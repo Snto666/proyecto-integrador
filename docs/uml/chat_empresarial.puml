@@ -1,0 +1,89 @@
+@startuml
+title Diagrama de clases UML preliminar – Chat Empresarial (Go)
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+package "Cliente" {
+  class ClienteChat {
+    -direccionServidor : string
+    -conexion : net.Conn
+    -sesionActual : *Sesion
+    +Conectar(addr string) : error
+    +IniciarSesion(u, c string) : error
+    +EnviarMensaje(txt string) : error
+    +RecibirMensajes() : <-chan Mensaje
+    +Desconectar() : error
+  }
+}
+
+package "Servidor" {
+  class ServidorChat {
+    -direccion : string
+    -sesiones : map[string]*Sesion
+    -autenticador : Autenticador
+    -repositorio : *RepositorioMensajes
+    -mu : sync.RWMutex
+    +Iniciar() : error
+    +Detener() : error
+    +ManejarConexion(c net.Conn)
+    +Difundir(m Mensaje) : error
+    +ObtenerHistorial(t string) : ([]Mensaje, error)
+  }
+  interface Autenticador {
+    +IniciarSesion(u, c string) : (*Sesion, error)
+    +ValidarToken(t string) : (*Sesion, error)
+  }
+  class AutenticadorFastAPI {
+    -urlBase : string
+    -clienteHTTP : *http.Client
+    +IniciarSesion(u, c string) : (*Sesion, error)
+    +ValidarToken(t string) : (*Sesion, error)
+  }
+  class RepositorioMensajes {
+    -ruta : string
+    -mensajes : []Mensaje
+    +Guardar(m Mensaje) : error
+    +Historial(t string) : ([]Mensaje, error)
+  }
+}
+
+package "Modelo compartido" {
+  class Usuario {
+    -id : string
+    -nombreUsuario : string
+    -rol : string
+    +ID() : string
+    +NombreUsuario() : string
+    +Rol() : string
+    +EsAdmin() : bool
+  }
+  class Sesion {
+    -token : string
+    -usuarioID : string
+    -expiraEn : time.Time
+    +Token() : string
+    +UsuarioID() : string
+    +EsValida() : bool
+  }
+  class Mensaje {
+    -id : string
+    -remitenteID : string
+    -destinatarioID : string
+    -contenido : string
+    -enviadoEn : time.Time
+    +Contenido() : string
+    +RemitenteID() : string
+    +Validar() : error
+  }
+}
+
+ClienteChat "0..*" -- "1" ServidorChat : TCP / WebSocket
+ClienteChat "1" --> "0..1" Sesion : sesionActual
+ServidorChat "1" *-- "0..*" Sesion : sesiones activas
+ServidorChat "1" *-- "1" RepositorioMensajes : persiste
+ServidorChat "1" --> "1" Autenticador : usa
+AutenticadorFastAPI ..|> Autenticador
+RepositorioMensajes "1" --> "0..*" Mensaje : almacena
+Sesion "0..*" --> "1" Usuario : pertenece a
+Mensaje "0..*" --> "1" Usuario : enviado por
+@enduml

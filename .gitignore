@@ -1,0 +1,23 @@
+# Go
+*.exe
+*.test
+*.out
+/bin/
+vendor/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Secretos y entorno (NUNCA subir credenciales)
+.env
+*.pem
+*.key
+
+# Editores y sistema
+.idea/
+.vscode/
+.DS_Store

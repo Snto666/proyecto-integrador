@@ -88,7 +88,7 @@ cd auth-service && pytest
 | Matriz de actores, roles y responsabilidades | [`docs/02_Matriz_Actores_Roles_Responsabilidades.pdf`](docs/02_Matriz_Actores_Roles_Responsabilidades.pdf) |
 | Contrato de comunicación del equipo | [`docs/03_Contrato_de_Comunicacion.pdf`](docs/03_Contrato_de_Comunicacion.pdf) |
 | Diagrama de clases UML inicial | [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png) |
-| Tablero de seguimiento | _PEGAR AQUÍ EL ENLACE DEL TABLERO (GitHub Projects)_ · guía en [`docs/tablero.md`](docs/tablero.md) |
+| Tablero de seguimiento | _https://github.com/users/Snto666/projects/1_ · guía en [`docs/tablero.md`](docs/tablero.md) |
 
 ## 8. Licencia
 
@@ -106,7 +106,7 @@ Licencia Open Source **MIT** (preliminar; se confirmará en la entrega definitiv
 | Integrante | Rol principal | GitHub |
 |---|---|---|
 | Santiago Yambay | Líder de proyecto, servidor Go, repositorio e integración | [@Snto666](https://github.com/Snto666) |
-| Daniel Villareal | Cliente Go, interfaz y red de dos sedes | _(usuario de GitHub)_ |
-| Esteban Trujillo | FastAPI, seguridad, estadística y Tecnología y Sociedad | _(usuario de GitHub)_ |
+| Daniel Villareal | Cliente Go, interfaz y red de dos sedes | EsTr2007 |
+| Esteban Trujillo | FastAPI, seguridad, estadística y Tecnología y Sociedad | D4n13lV1ll4rr34l |
 
 Las contribuciones individuales se verifican mediante el historial de commits, los pull requests y el tablero de tareas.

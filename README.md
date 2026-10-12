@@ -3,7 +3,7 @@
 > Plataforma empresarial distribuida entre dos sedes que integra **Redes, Desarrollo de Software (Go) y Seguridad Informática**, con validación estadística y análisis socio-tecnológico.
 > UIDE · Escuela de Ciencias de la Computación · Ingeniería en Sistemas de Información · Periodo Septiembre 2026 – Enero 2027.
 
-**Estado actual:** Fase 1 (Contexto, planificación y organización) entregada. Las secciones marcadas con 🔜 se completarán en las fases indicadas.
+**Estado actual:** Fase 1 (Contexto, planificación y organización) entregada. Las secciones marcadas con se completarán en las fases indicadas.
 
 ## Video de presentación (Fase 1)
 
@@ -15,8 +15,8 @@ Una empresa abrió una segunda sede y necesita comunicar a su personal de forma 
 
 - **Aplicación (app-go):** cliente y servidor de chat en Go (structs + composición, interfaces).
 - **Autenticación (auth-service):** FastAPI registra usuarios, protege contraseñas con hash y emite la sesión (token). El servidor Go solo la valida.
-- **Red (network):** dos sedes con routers OpenWrt (OSPF), VLAN/VLSM sobre 10.10.0.0/16, EtherChannel, RSTP, DHCP, NAT y firewall. 🔜 Fases 3–5
-- **Investigación (research):** instrumento, datos y análisis estadístico. 🔜 Fases 2–6
+- **Red (network):** dos sedes con routers OpenWrt (OSPF), VLAN/VLSM sobre 10.10.0.0/16, EtherChannel, RSTP, DHCP, NAT y firewall.  Fases 3–5
+- **Investigación (research):** instrumento, datos y análisis estadístico.  Fases 2–6
 - **Documentación (docs):** documentos entregables, diagramas y actas.
 
 Diagrama de clases preliminar: [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png).
@@ -28,9 +28,9 @@ Diagrama de clases preliminar: [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagr
 | Go | 1.22 o superior |
 | Python | 3.11 o superior (servicio FastAPI) |
 | Git | 2.x |
-| Red 🔜 | Routers OpenWrt (Raspberry Pi o equivalente autorizado) y switches |
+| Red  | Routers OpenWrt (Raspberry Pi o equivalente autorizado) y switches |
 
-## 3. Instrucciones de instalación y ejecución 🔜
+## 3. Instrucciones de instalación y ejecución 
 
 Se documentarán a medida que existan los componentes (Fase 4 y Fase 5). Previsto:
 
@@ -46,7 +46,7 @@ go run ./cmd/servidor
 go run ./cmd/cliente
 ```
 
-## 4. Variables de entorno y datos de prueba seguros 🔜
+## 4. Variables de entorno y datos de prueba seguros 
 
 Las credenciales y secretos **nunca** se suben al repositorio. Se usará un archivo `.env` (ignorado por Git) y un archivo `.env.example` con valores ficticios.
 
@@ -73,7 +73,7 @@ proyecto-integrador/
 └── README.md
 ```
 
-## 6. Cómo ejecutar las pruebas 🔜
+## 6. Cómo ejecutar las pruebas 
 
 ```bash
 cd app-go && go test ./...

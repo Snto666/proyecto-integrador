@@ -106,7 +106,7 @@ Licencia Open Source **MIT** (preliminar; se confirmará en la entrega definitiv
 | Integrante | Rol principal | GitHub |
 |---|---|---|
 | Santiago Yambay | Líder de proyecto, servidor Go, repositorio e integración | [@Snto666](https://github.com/Snto666) |
-| Daniel Villareal | Cliente Go, interfaz y red de dos sedes | EsTr2007 |
-| Esteban Trujillo | FastAPI, seguridad, estadística y Tecnología y Sociedad | D4n13lV1ll4rr34l |
+| Daniel Villareal | Cliente Go, interfaz y red de dos sedes | [@D4n13lV1ll4rr34l](https://github.com/D4n13lV1ll4rr34l) |
+| Esteban Trujillo | FastAPI, seguridad, estadística y Tecnología y Sociedad | [@EsTr2007](https://github.com/EsTr2007) |
 
 Las contribuciones individuales se verifican mediante el historial de commits, los pull requests y el tablero de tareas.

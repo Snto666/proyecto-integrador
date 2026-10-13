@@ -7,7 +7,7 @@
 
 ## Video de presentación (Fase 1)
 
-🎥 **Enlace:** _PEGAR AQUÍ EL ENLACE DEL VIDEO_ (verificar que esté accesible sin permisos especiales)
+🎥 **Enlace VIDEO EXPLICATIVO SOLICITADO PARA LA FAASE 1:** _https://youtu.be/DPoNVu9Z1W0_ 
 
 ## 1. Descripción del proyecto y arquitectura
 

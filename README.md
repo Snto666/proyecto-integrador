@@ -88,7 +88,7 @@ cd auth-service && pytest
 | Matriz de actores, roles y responsabilidades | [`docs/02_Matriz_Actores_Roles_Responsabilidades.pdf`](docs/02_Matriz_Actores_Roles_Responsabilidades.pdf) |
 | Contrato de comunicación del equipo | [`docs/03_Contrato_de_Comunicacion.pdf`](docs/03_Contrato_de_Comunicacion.pdf) |
 | Diagrama de clases UML inicial | [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png) |
-| Tablero de seguimiento | _https://github.com/users/Snto666/projects/1_ · guía en [`docs/tablero.md`](docs/tablero.md) |
+| Tablero de seguimiento | _https://github.com/users/Snto666/projects/1_  |
 
 ## 8. Licencia
 

@@ -84,10 +84,10 @@ cd auth-service && pytest
 
 | Entregable | Archivo |
 |---|---|
-| Documento de contexto y selección del sistema | [`docs/01_Contexto_y_Seleccion_del_Sistema.pdf`](docs/01_Contexto_y_Seleccion_del_Sistema.pdf) |
-| Matriz de actores, roles y responsabilidades | [`docs/02_Matriz_Actores_Roles_Responsabilidades.pdf`](docs/02_Matriz_Actores_Roles_Responsabilidades.pdf) |
-| Contrato de comunicación del equipo | [`docs/03_Contrato_de_Comunicacion.pdf`](docs/03_Contrato_de_Comunicacion.pdf) |
-| Diagrama de clases UML inicial | [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png) |
+| Documento de contexto y selección del sistema | [`01_Contexto_y_Seleccion_del_Sistema.pdf`](docs/01_Contexto_y_Seleccion_del_Sistema.pdf) |
+| Matriz de actores, roles y responsabilidades | [`02_Matriz_Actores_Roles_Responsabilidades.pdf`](docs/02_Matriz_Actores_Roles_Responsabilidades.pdf) |
+| Contrato de comunicación del equipo | [`03_Contrato_de_Comunicacion.pdf`](docs/03_Contrato_de_Comunicacion.pdf) |
+| Diagrama de clases UML inicial | [`04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png) |
 | Tablero de seguimiento | _https://github.com/users/Snto666/projects/1_  |
 
 ## 8. Licencia

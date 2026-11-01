@@ -116,5 +116,5 @@ Contiene el objetivo de la aplicación, los actores, el alcance, la tabla de req
 
 Diagramas actualizados en esta fase:
 
-- Diagrama de clases UML: [04_Diagrama_UML_Clases.png](docs/04_Diagrama_UML_Clases.png) (fuente editable: [chat_empresarial.puml](docs/uml/chat_empresarial.puml))
+- Diagrama de clases UML: [`04_Diagrama_UML_Clases (ACTUAZLIZADO).pdf`](docs/04_Diagrama_UML_Clases%20(ACTUAZLIZADO).pdf) (fuente editable: [chat_empresarial.puml](docs/uml/chat_empresarial.puml))
 - Diagrama de casos de uso: [05_Diagrama_Casos_de_Uso.png](docs/05_Diagrama_Casos_de_Uso.png)

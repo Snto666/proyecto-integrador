@@ -7,7 +7,7 @@
 
 ## Video de presentación (Fase 1)
 
-🎥 **Enlace:** _PEGAR AQUÍ EL ENLACE DEL VIDEO_ (verificar que esté accesible sin permisos especiales)
+🎥 **Enlace VIDEO EXPLICATIVO SOLICITADO PARA LA FASE 1:** _https://youtu.be/DPoNVu9Z1W0_ 
 
 ## 1. Descripción del proyecto y arquitectura
 
@@ -19,7 +19,6 @@ Una empresa abrió una segunda sede y necesita comunicar a su personal de forma 
 - **Investigación (research):** instrumento, datos y análisis estadístico.  Fases 2–6
 - **Documentación (docs):** documentos entregables, diagramas y actas.
 
-Diagrama de clases preliminar: [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png).
 
 ## 2. Requisitos de software y hardware
 
@@ -93,11 +92,11 @@ cd auth-service && pytest
 
 | Entregable | Archivo |
 |---|---|
-| Documento de contexto y selección del sistema | [`docs/01_Contexto_y_Seleccion_del_Sistema.pdf`](docs/01_Contexto_y_Seleccion_del_Sistema.pdf) |
-| Matriz de actores, roles y responsabilidades | [`docs/02_Matriz_Actores_Roles_Responsabilidades.pdf`](docs/02_Matriz_Actores_Roles_Responsabilidades.pdf) |
-| Contrato de comunicación del equipo | [`docs/03_Contrato_de_Comunicacion.pdf`](docs/03_Contrato_de_Comunicacion.pdf) |
-| Diagrama de clases UML inicial | [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png) |
-| Tablero de seguimiento | _https://github.com/users/Snto666/projects/1_ · guía en [`docs/tablero.md`](docs/tablero.md) |
+| Documento de contexto y selección del sistema | [`01_Contexto_y_Seleccion_del_Sistema.pdf`](docs/01_Contexto_y_Seleccion_del_Sistema.pdf) |
+| Matriz de actores, roles y responsabilidades | [`02_Matriz_Actores_Roles_Responsabilidades.pdf`](docs/02_Matriz_Actores_Roles_Responsabilidades.pdf) |
+| Contrato de comunicación del equipo | [`03_Contrato_de_Comunicacion.pdf`](docs/03_Contrato_de_Comunicacion.pdf) |
+| Diagrama de clases UML inicial | [`04_Diagrama_UML_Clases (ACTUAZLIZADO).pdf`](docs/04_Diagrama_UML_Clases%20(ACTUAZLIZADO).pdf) |
+| Tablero de seguimiento | _https://github.com/users/Snto666/projects/1_  |
 
 ## 8. Licencia
 

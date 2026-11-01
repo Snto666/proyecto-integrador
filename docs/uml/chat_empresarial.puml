@@ -1,7 +1,6 @@
 @startuml
-title Diagrama de clases UML preliminar – Chat Empresarial (Go)
+title Diagrama de clases UML – Chat Empresarial (Go) – Fase 2
 skinparam classAttributeIconSize 0
-skinparam linetype ortho
 
 package "Cliente" {
   class ClienteChat {
@@ -10,9 +9,12 @@ package "Cliente" {
     -sesionActual : *Sesion
     +Conectar(addr string) : error
     +IniciarSesion(u, c string) : error
-    +EnviarMensaje(txt string) : error
+    +EnviarMensaje(destinatarioID, texto string) : error
     +RecibirMensajes() : <-chan Mensaje
-    +Desconectar() : error
+    +ConsultarHistorial(otro string) : ([]Mensaje, error)
+    +CerrarSesion() : error
+    +ConsultarSesionesActivas() : ([]*Sesion, error)
+    +CerrarSesionDeUsuario(id string) : error
   }
 }
 
@@ -22,28 +24,45 @@ package "Servidor" {
     -sesiones : map[string]*Sesion
     -autenticador : Autenticador
     -repositorio : *RepositorioMensajes
+    -registro : *RegistroEventos
     -mu : sync.RWMutex
     +Iniciar() : error
     +Detener() : error
     +ManejarConexion(c net.Conn)
+    +AutenticarUsuario(u, c, origen string) : (*Sesion, error)
+    +EnviarMensaje(token string, m Mensaje) : error
     +Difundir(m Mensaje) : error
-    +ObtenerHistorial(t string) : ([]Mensaje, error)
+    +ObtenerHistorial(token, otro string) : ([]Mensaje, error)
+    +CerrarSesion(token string) : error
+    +SesionesActivas(token string) : ([]*Sesion, error)
+    +CerrarSesionDeUsuario(token, id string) : error
+    -validarSesion(token string) : (*Sesion, error)
+    -exigirAdmin(s *Sesion) : error
   }
   interface Autenticador {
     +IniciarSesion(u, c string) : (*Sesion, error)
     +ValidarToken(t string) : (*Sesion, error)
+    +CerrarSesion(t string) : error
   }
   class AutenticadorFastAPI {
     -urlBase : string
     -clienteHTTP : *http.Client
     +IniciarSesion(u, c string) : (*Sesion, error)
     +ValidarToken(t string) : (*Sesion, error)
+    +CerrarSesion(t string) : error
   }
   class RepositorioMensajes {
     -ruta : string
     -mensajes : []Mensaje
     +Guardar(m Mensaje) : error
-    +Historial(t string) : ([]Mensaje, error)
+    +Historial(a, b string, n int) : ([]Mensaje, error)
+    +Pendientes(usuarioID string) : ([]Mensaje, error)
+  }
+  class RegistroEventos {
+    -ruta : string
+    -eventos : []string
+    +Registrar(tipo, usuarioID, origen string, d time.Duration) : error
+    +ExportarCSV(ruta string) : error
   }
 }
 
@@ -61,9 +80,13 @@ package "Modelo compartido" {
     -token : string
     -usuarioID : string
     -expiraEn : time.Time
+    -iniciadaEn : time.Time
+    -origen : string
     +Token() : string
     +UsuarioID() : string
     +EsValida() : bool
+    +IniciadaEn() : time.Time
+    +Origen() : string
   }
   class Mensaje {
     -id : string
@@ -71,19 +94,24 @@ package "Modelo compartido" {
     -destinatarioID : string
     -contenido : string
     -enviadoEn : time.Time
+    -entregado : bool
     +Contenido() : string
     +RemitenteID() : string
+    +DestinatarioID() : string
     +Validar() : error
+    +MarcarEntregado()
   }
 }
 
-ClienteChat "0..*" -- "1" ServidorChat : TCP / WebSocket
+ClienteChat "0..*" -- "1" ServidorChat : TCP cifrado
 ClienteChat "1" --> "0..1" Sesion : sesionActual
 ServidorChat "1" *-- "0..*" Sesion : sesiones activas
 ServidorChat "1" *-- "1" RepositorioMensajes : persiste
+ServidorChat "1" *-- "1" RegistroEventos : registra
 ServidorChat "1" --> "1" Autenticador : usa
 AutenticadorFastAPI ..|> Autenticador
 RepositorioMensajes "1" --> "0..*" Mensaje : almacena
 Sesion "0..*" --> "1" Usuario : pertenece a
 Mensaje "0..*" --> "1" Usuario : enviado por
+Mensaje "0..*" --> "1" Usuario : dirigido a
 @enduml

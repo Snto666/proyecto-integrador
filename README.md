@@ -19,7 +19,6 @@ Una empresa abrió una segunda sede y necesita comunicar a su personal de forma 
 - **Investigación (research):** instrumento, datos y análisis estadístico.  Fases 2–6
 - **Documentación (docs):** documentos entregables, diagramas y actas.
 
-Diagrama de clases preliminar: [`docs/04_Diagrama_UML_Clases.png`](docs/04_Diagrama_UML_Clases.png).
 
 ## 2. Requisitos de software y hardware
 

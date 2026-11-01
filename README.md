@@ -29,15 +29,6 @@ Una empresa abrió una segunda sede y necesita comunicar a su personal de forma 
 | Git | 2.x |
 | Red  | Routers OpenWrt (Raspberry Pi o equivalente autorizado) y switches |
 
-Documento de la Fase 2 (grupo 11): [Fase2_POO_Grupo11.pdf](docs/Fase2_POO_Grupo11.pdf)
-
-Contiene el objetivo de la aplicación, los actores, el alcance, la tabla de requisitos, el diagrama de casos de uso, las fichas de casos de uso, la matriz de trazabilidad, los cambios respecto a la Fase 1 y la declaración de uso de IA.
-
-Diagramas actualizados en esta fase:
-
-- Diagrama de clases UML: [04_Diagrama_UML_Clases.png](docs/04_Diagrama_UML_Clases.png) (fuente editable: [chat_empresarial.puml](docs/uml/chat_empresarial.puml))
-- Diagrama de casos de uso: [05_Diagrama_Casos_de_Uso.png](docs/05_Diagrama_Casos_de_Uso.png)
-
 ## 3. Instrucciones de instalación y ejecución 
 
 Se documentarán a medida que existan los componentes (Fase 4 y Fase 5). Previsto:
@@ -118,3 +109,12 @@ Licencia Open Source **MIT** (preliminar; se confirmará en la entrega definitiv
 | Esteban Trujillo | FastAPI, seguridad, estadística y Tecnología y Sociedad | [@EsTr2007](https://github.com/EsTr2007) |
 
 Las contribuciones individuales se verifican mediante el historial de commits, los pull requests y el tablero de tareas.
+
+Documento (grupo 11): [Fase2_POO_Grupo11.pdf](docs/Fase2_POO_Grupo11.pdf)
+
+Contiene el objetivo de la aplicación, los actores, el alcance, la tabla de requisitos, el diagrama de casos de uso, las fichas de casos de uso, la matriz de trazabilidad, los cambios respecto a la Fase 1 y la declaración de uso de IA.
+
+Diagramas actualizados en esta fase:
+
+- Diagrama de clases UML: [04_Diagrama_UML_Clases.png](docs/04_Diagrama_UML_Clases.png) (fuente editable: [chat_empresarial.puml](docs/uml/chat_empresarial.puml))
+- Diagrama de casos de uso: [05_Diagrama_Casos_de_Uso.png](docs/05_Diagrama_Casos_de_Uso.png)

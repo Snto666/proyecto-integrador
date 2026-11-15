@@ -1,0 +1,49 @@
+@startuml
+title Diagrama de componentes: cliente Go y servidor Go
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 11
+skinparam componentStyle uml2
+left to right direction
+
+package "CLIENTE Go (PC del empleado)" #E8F1FB {
+  component "Interfaz de consola" as C_UI
+  component "Cliente de API\n(HTTPS+JSON y wss)" as C_API
+  component "Validación (cliente)" as C_VAL
+}
+
+package "SERVIDOR Go (10.10.0.194:8080)" #FDF1E3 {
+  component "Manejadores HTTP/WS" as S_MAN
+  component "Control de acceso" as S_CTL
+  component "Servicio de chat" as S_SVC
+  component "Canal en vivo" as S_HUB
+  component "Cliente de autenticación" as S_AUT
+  component "Almacén de mensajes" as S_ALM
+  component "Registro de eventos" as S_REG
+  component "Validación (servidor)" as S_VAL
+}
+
+component "Servicio FastAPI\n(10.10.0.195:8000)" as FAPI #EAF5EA
+database "SQLite\nmensajes.db" as SQL
+component "Modelo compartido\n(Usuario, Sesion, Mensaje)" as MOD #F3F3F3
+
+C_UI --> C_API
+C_API ..> C_VAL
+C_API -[#1f4e79,thickness=2]-> S_MAN : HTTPS / wss
+
+S_MAN --> S_VAL
+S_MAN --> S_CTL
+S_MAN --> S_SVC
+S_MAN --> S_REG
+S_CTL --> S_AUT
+S_CTL --> S_REG
+S_SVC --> S_AUT
+S_SVC --> S_ALM
+S_SVC --> S_HUB
+S_SVC --> S_REG
+S_AUT -[#2e7d32,thickness=2]-> FAPI : HTTPS + JSON
+S_ALM --> SQL
+
+C_API ..> MOD
+S_SVC ..> MOD
+@enduml

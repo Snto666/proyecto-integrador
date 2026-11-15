@@ -1,0 +1,31 @@
+@startuml
+title Arquitectura cliente-servidor del Chat Empresarial (Fase 3)
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 12
+skinparam nodesep 40
+skinparam ranksep 130
+left to right direction
+
+node "PC del empleado\nVLAN 10 · Sede A o B\n(IP por DHCP)" as PC #E8F1FB {
+  component "Cliente Go\ncmd/cliente\n(consola)" as CLI
+}
+
+node "Servidor de chat\n10.10.0.194:8080 (TLS)\nVLAN 20 · Sede A" as SRV #FDF1E3 {
+  component "Servidor Go\ncmd/servidor" as GO
+  database "SQLite\nmensajes.db" as DB
+  artifact "Registro de eventos\n(archivo y CSV)" as LOG
+}
+
+node "Servidor de autenticación\n10.10.0.195:8000 (TLS)\nVLAN 20 · Sede A" as AUTH #EAF5EA {
+  component "Servicio FastAPI" as API
+  database "Base de usuarios\n(hash Argon2id)" as UDB
+}
+
+CLI <-[#1f4e79,thickness=2]-> GO : "**1** HTTPS + JSON (TLS 1.2 o superior),\ntoken en la cabecera Authorization\n**2** wss (WebSocket sobre TLS):\nmensajes en vivo hacia el cliente"
+GO -[#2e7d32,thickness=2]-> API : "**3** HTTPS + JSON\n(TLS 1.2 o superior)\nClave de servicio"
+GO --> DB : "SQL local"
+GO --> LOG : "escritura local"
+API --> UDB : "acceso local"
+CLI -[#c62828,dashed]-> API : "**X** bloqueado por\nel firewall"
+@enduml

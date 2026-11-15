@@ -121,14 +121,15 @@ Diagramas actualizados en esta fase:
 ## Fase 3: Diseño de la solución (POO)
 
 Documento principal: [docs/Fase3_POO_Grupo11.pdf](docs/Fase3_POO_Grupo11.pdf)
-| Diagrama | Archivo |
-|---|---|
-| Arquitectura | [01_arquitectura.png](docs/uml/01_arquitectura.png) |
-| Componentes | [02_componentes.png](docs/uml/02_componentes.png) |
-| Clases (vista general) | [03_clases_general.png](docs/uml/03_clases_general.png) |
-| Clases del cliente | [04_clases_cliente.png](docs/uml/04_clases_cliente.png) |
-| Modelo compartido | [05_clases_modelo.png](docs/uml/05_clases_modelo.png) |
-| Clases del servidor | [06_clases_servidor.png](docs/uml/06_clases_servidor.png) |
-| Autenticación, almacén, registro y validación | [07_clases_servicios.png](docs/uml/07_clases_servicios.png) |
-| Secuencia: inicio de sesión | [08_secuencia_login.png](docs/uml/08_secuencia_login.png) |
-| Secuencia: operación protegida | [09_secuencia_operacion_protegida.png](docs/uml/09_secuencia_operacion_protegida.png) |
+
+| Diagrama | Imagen (PNG) | Editable (draw.io) |
+|---|---|---|
+| Arquitectura | [01_arquitectura.png](docs/uml/01_arquitectura.png) | — |
+| Componentes | [02_componentes.png](docs/uml/02_componentes.png) | — |
+| Clases (vista general) | [03_clases_general.png](docs/uml/03_clases_general.png) | [03_clases_general.drawio](docs/uml/03_clases_general.drawio) |
+| Clases del cliente | [04_clases_cliente.png](docs/uml/04_clases_cliente.png) | [04_clases_cliente.drawio](docs/uml/04_clases_cliente.drawio) |
+| Modelo compartido | [05_clases_modelo.png](docs/uml/05_clases_modelo.png) | [05_clases_modelo.drawio](docs/uml/05_clases_modelo.drawio) |
+| Clases del servidor | [06_clases_servidor.png](docs/uml/06_clases_servidor.png) | [06_clases_servidor.drawio](docs/uml/06_clases_servidor.drawio) |
+| Autenticación, almacén, registro y validación | [07_clases_servicios.png](docs/uml/07_clases_servicios.png) | [07_clases_servicios.drawio](docs/uml/07_clases_servicios.drawio) |
+| Secuencia: inicio de sesión | [08_secuencia_login.png](docs/uml/08_secuencia_login.png) | — |
+| Secuencia: operación protegida | [09_secuencia_operacion_protegida.png](docs/uml/09_secuencia_operacion_protegida.png) | — |

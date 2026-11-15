@@ -7,7 +7,7 @@
 
 ## Video de presentación (Fase 1)
 
-🎥 **Enlace VIDEO EXPLICATIVO SOLICITADO PARA LA FASE 1:** _https://youtu.be/DPoNVu9Z1W0_ 
+ **Enlace VIDEO EXPLICATIVO SOLICITADO PARA LA FASE 1:** _https://youtu.be/DPoNVu9Z1W0_ 
 
 ## 1. Descripción del proyecto y arquitectura
 
@@ -118,3 +118,24 @@ Diagramas actualizados en esta fase:
 
 - Diagrama de clases UML: [`04_Diagrama_UML_Clases (ACTUAZLIZADO).pdf`](docs/04_Diagrama_UML_Clases%20(ACTUAZLIZADO).pdf) (fuente editable: [chat_empresarial.puml](docs/uml/chat_empresarial.puml))
 - Diagrama de casos de uso: [05_Diagrama_Casos_de_Uso.png](docs/05_Diagrama_Casos_de_Uso.png)
+## Fase 3: Diseño de la solución (POO)
+
+Documento principal: [docs/Fase3_POO_Grupo11.pdf](docs/Fase3_POO_Grupo11.pdf)
+
+Contiene la arquitectura cliente-servidor, el diagrama de componentes, el diagrama de clases, los paquetes de Go, la secuencia de autenticación, la matriz de trazabilidad, el plan de pruebas (CP-01 a CP-33), el prototipo de la interfaz de consola, los cambios respecto a la Fase 2 y la declaración de uso de IA.
+
+Diagramas editables y su imagen PNG, en `docs/uml/` (los de clases en draw.io, los demás en PlantUML):
+
+| Diagrama | Archivo |
+|---|---|
+| Arquitectura | [01_arquitectura.puml](docs/uml/01_arquitectura.puml) |
+| Componentes | [02_componentes.puml](docs/uml/02_componentes.puml) |
+| Clases (vista general) | [03_clases_general.drawio](docs/uml/03_clases_general.drawio) |
+| Clases del cliente | [04_clases_cliente.drawio](docs/uml/04_clases_cliente.drawio) |
+| Modelo compartido | [05_clases_modelo.drawio](docs/uml/05_clases_modelo.drawio) |
+| Clases del servidor | [06_clases_servidor.drawio](docs/uml/06_clases_servidor.drawio) |
+| Autenticación, almacén, registro y validación | [07_clases_servicios.drawio](docs/uml/07_clases_servicios.drawio) |
+| Secuencia: inicio de sesión | [08_secuencia_login.puml](docs/uml/08_secuencia_login.puml) |
+| Secuencia: operación protegida | [09_secuencia_operacion_protegida.puml](docs/uml/09_secuencia_operacion_protegida.puml) |
+
+Diagrama de clases de la Fase 2: [PNG](docs/04_Diagrama_UML_Clases.png) y [PDF](docs/04_Diagrama_UML_Clases_Fase2.pdf).

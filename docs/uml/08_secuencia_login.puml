@@ -1,0 +1,52 @@
+@startuml
+title Secuencia de autenticación (1/2): inicio de sesión
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 11
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 230
+skinparam sequence {
+  LifeLineBorderColor #555555
+  ParticipantBackgroundColor #F3F3F3
+}
+autonumber
+
+actor "Usuario" as U
+participant "Cliente Go\n(InterfazConsola, ClienteChat)" as C #E8F1FB
+participant "Servidor Go\n(ManejadoresHTTP, ServidorChat)" as S #FDF1E3
+participant "Servicio FastAPI\n(autenticación)" as F #EAF5EA
+
+U -> C : Escribe su usuario y su contraseña
+C -> C : Validador.ValidarCredenciales\n(no vacíos, formato y longitud)
+C -> S : POST /api/login  {usuario, contrasena}\n(HTTPS, TLS 1.2 o superior)
+S -> S : Validador.ValidarCredenciales\n(segunda barrera, obligatoria)
+S -> F : POST /auth/login  {usuario, contrasena}\n(HTTPS + clave de servicio)
+note over F
+  **FastAPI valida las credenciales** (hash Argon2id).
+  La aplicación Go no guarda ni registra la contraseña.
+end note
+
+alt Caso 1: credenciales correctas
+  F --> S : 200  {token, usuarioID, nombreUsuario, rol, expiraEn}
+  S -> S : ServidorChat.AutenticarUsuario: crea la Sesion\ny registra el evento «inicio de sesión»
+  S --> C : 200  {token, rol, expiraEn}
+  C -> C : Guarda la Sesion solo en memoria\n(sin contraseña)
+  C --> U : «Sesión iniciada» y menú principal
+else Caso 2: contraseña incorrecta (o usuario inexistente)
+  F --> S : 401  «Credenciales inválidas»
+  S -> S : Registra el evento «inicio de sesión fallido»\n(sin contraseña); no se crea ninguna Sesion
+  S --> C : 401  «Credenciales inválidas»
+  C --> U : Muestra el error y qué hacer:\nrevisar los datos e intentar de nuevo
+  note right of S
+    Tras 5 fallos seguidos FastAPI responde 423
+    y el servidor devuelve «Cuenta bloqueada
+    temporalmente» durante 5 minutos.
+  end note
+else Caso 3: FastAPI no responde (5 s)
+  F -[#c62828]x S : Sin respuesta (tiempo de espera agotado)
+  S -> S : Registra «servicio de autenticación no disponible»;\nno crea Sesion (falla de forma cerrada)
+  S --> C : 503  «Servicio de autenticación no disponible»
+  C --> U : Muestra el error y qué hacer:\nreintentar más tarde o avisar al administrador
+end
+@enduml

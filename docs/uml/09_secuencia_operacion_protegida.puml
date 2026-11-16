@@ -1,0 +1,57 @@
+@startuml
+title Secuencia de autenticación (2/2): operación protegida (ejemplo: enviar un mensaje)
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 11
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 230
+skinparam sequence {
+  LifeLineBorderColor #555555
+  ParticipantBackgroundColor #F3F3F3
+}
+autonumber
+
+actor "Usuario" as U
+participant "Cliente Go\n(InterfazConsola, ClienteChat)" as C #E8F1FB
+participant "Servidor Go\n(ManejadoresHTTP, ControlAcceso,\nServidorChat)" as S #FDF1E3
+participant "Servicio FastAPI\n(autenticación)" as F #EAF5EA
+
+U -> C : Escribe el destinatario y el texto del mensaje
+C -> C : Mensaje.Validar (de 1 a 1000 caracteres)
+C -> S : POST /api/mensajes  {destinatario, contenido}\nAuthorization: Bearer <token>   (HTTPS)
+S -> S : ControlAcceso.Autorizar(token, «enviar_mensaje»)
+S -> F : POST /auth/validar  {token}\n(HTTPS + clave de servicio)
+note over F
+  **FastAPI valida la sesión** en cada solicitud:
+  token existente, no vencido y no revocado.
+  El servidor Go nunca decide por su cuenta si el token es válido.
+end note
+
+alt Caso 4: sesión válida
+  F --> S : 200  {usuarioID, nombreUsuario, rol, expiraEn}
+  S -> S : ControlAcceso comprueba el rol mínimo de la operación\n(si no figura en la tabla, se deniega)
+  S -> F : GET /auth/usuarios/{destinatario}  (BuscarUsuario)
+  alt el destinatario existe
+    F --> S : 200  {usuarioID, nombreUsuario}
+    S -> S : Crea el Mensaje con remitente = usuario de la sesión\ny lo guarda (RepositorioMensajes.Guardar)
+    S -> S : Difundir: si el destinatario está conectado,\nlo entrega por wss
+    S --> C : 201 Creado
+    C --> U : «Mensaje enviado»
+  else el destinatario no existe
+    F --> S : 404
+    S --> C : 404  «El usuario destinatario no existe» (no se guarda nada)
+    C --> U : Muestra el error y qué hacer: revisar el nombre
+  end
+else Caso 5: sesión vencida, cerrada o inventada
+  F --> S : 401  sesión no válida
+  S -> S : Registra «sesión inválida»; la operación NO se ejecuta
+  S --> C : 401  «Sesión inválida o vencida»
+  C -> C : Borra la Sesion local
+  C --> U : Muestra el error y qué hacer:\niniciar sesión de nuevo
+else Caso 6: FastAPI no responde (5 s)
+  F -[#c62828]x S : Sin respuesta (tiempo de espera agotado)
+  S --> C : 503  «Servicio de autenticación no disponible»\n(falla de forma cerrada: no se ejecuta ni se guarda nada)
+  C --> U : Muestra el error y qué hacer: reintentar más tarde
+end
+@enduml

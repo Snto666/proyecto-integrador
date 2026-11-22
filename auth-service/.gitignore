@@ -1,0 +1,10 @@
+# Secretos y datos locales: NUNCA se suben (control C-08)
+.env
+*.key
+*.pem
+*.db
+logs/
+certs/
+__pycache__/
+.pytest_cache/
+.venv/

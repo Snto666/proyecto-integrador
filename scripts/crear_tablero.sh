@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Crea etiquetas e issues de las tareas del cronograma. Requiere `gh auth login`.
-# Ejecutar UNA sola vez, dentro del repositorio ya subido a GitHub.
 set -euo pipefail
 
 for l in tarea "Fase 1" "Fase 2" "Fase 3" "Fase 4" "Fase 5" "Fase 6" "Fase 7" "Fase 8" asistido-por-ia; do

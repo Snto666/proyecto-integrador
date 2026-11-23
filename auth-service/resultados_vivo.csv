@@ -1,0 +1,18 @@
+id,prueba,esperado,obtenido,resultado
+PS-18,Crear cuenta sin sesión (autorregistro),401,401,PASA
+PS-18b,Contraseña de menos de 12 caracteres,400,400,PASA
+PS-01,Login con credenciales válidas,200 + sesión con rol y vencimiento,"200, rol=empleado",PASA
+PS-02,"Login inválido: clave errónea, usuario inexistente y campos vacíos",401 y el MISMO mensaje en los 3 casos,"[401], mensajes distintos: 1 ('Credenciales inválidas')",PASA
+PS-03,5 fallos seguidos y luego la clave CORRECTA,5 x 401 y luego 423 'Cuenta bloqueada temporalmente',"[401, 401, 401, 401, 401] y luego 423 'Cuenta bloqueada temporalmente'",PASA
+PS-04,ACCESO PERMITIDO: empleado envía mensaje y consulta su historial,201 y 1 mensaje propio,201 y 1 mensaje(s),PASA
+PS-05,ACCESO DENEGADO: empleado intenta ver sesiones activas (10 intentos),403 'Acceso denegado' x10,"{403} x10, 'Acceso denegado'",PASA
+PS-06,Cliente modificado (ana) pide historial declarando otro usuario,"ignora el dato del cliente; 1 mensaje propio con empleado, no ajenos","200, 1 mensaje(s) (los suyos con ese usuario)",PASA
+PS-06b,Tercer usuario (admin) pide el historial emp-ana,0 mensajes ajenos (el admin tampoco lee conversaciones),"200, 0 mensaje(s)",PASA
+PS-07,Admin lista sesiones activas (sin token),"200, lista con usuario/inicio/origen y sin campo token","200, 4 sesión(es), 'token' en la respuesta: False",PASA
+PS-07b,Admin cierra la sesión de un empleado,token rechazado en 5 s o menos,401 en 0.02 s,PASA
+PS-08,Sesión cerrada (10 intentos) y token inventado,401 'Sesión inválida o vencida',{401} y 401 'Sesión inválida o vencida',PASA
+PS-09,Canal cifrado: TLS 1.2 aceptado; TLS 1.1 y HTTP sin cifrado rechazados,TLSv1.2/1.3 acepta; TLS 1.1 y texto plano rechazados,TLS<=1.2: TLSv1.2; TLS 1.1: RECHAZADA (SSLEOFError); HTTP plano: RECHAZADA (RemoteProtocolError),PASA
+PS-11,Llamar al servicio sin clave de servicio y con clave incorrecta,401 y 401 'No autorizado',401 y 401,PASA
+PS-12,"6 entradas inválidas (vacía, 1001 car., faltantes, JSON roto, cuerpo grande)",400 o 413 y el servicio sigue disponible (201),"[400, 400, 400, 400, 400, 413] y luego 201",PASA
+PS-15,Registros de eventos sin contraseñas ni tokens,"eventos login_ok, login_fallido, cuenta_bloqueada, acceso_denegado; 0 secretos",eventos: 12 tipos; secretos hallados: 0,PASA
+PS-17,Ráfaga de 30 logins en menos de 1 minuto (límite 20/min),al aparecer 429 'Demasiadas peticiones',primer 429 en la petición n.º 4,PASA
